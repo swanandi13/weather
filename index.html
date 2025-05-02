@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    
+</head>
+<body>
+    <div class="weather-showcase">
+        <div class="input">
+        <input type="text" placeholder="Enter city name" class="city-input">
+        <button class="search-btn">
+            <span class="material-symbols-outlined">
+                search
+            </span>
+        </button>
+
+    </div>
+    
+    <section class="weather-info" >
+        <div class="location-date">
+                <span class="material-symbols-outlined">
+                    location_on
+                </span>
+                <h4 class="country-txt">City</h4>
+            </div>
+            <h5 class="date">Loading--</h5>
+       
+    </section>
+    <div class="weather-details">
+        <h2 class="temperature">--°C</h2>
+        <img src="" class="weather-icon" id="weather-icon" alt="weather">
+        <h3 class="weather-condition">weather condition--</h3>
+        <p id="humidityTxt">Humidity: --%</p>
+        <p id="windSpeedTxt">Wind Speed: -- km/h</p>
+
+        
+    </div>
+</div>   
+
+<script>
+    const apiKey = "901ba37d6dee8b8af1074163031db603";
+    const searchBtn = document.querySelector(".search-btn");
+    const cityInput = document.querySelector(".city-input");
+    const cityTxt = document.querySelector(".country-txt");
+    const dateTxt = document.querySelector(".date");
+    const tempTxt = document.querySelector(".temperature");
+    const conditionTxt = document.querySelector(".weather-condition");
+    const weatherBg = document.querySelector(".weather-showcase");
+    const weatherIcon = document.querySelector(".weather-icon");
+    const humidityTxt = document.querySelector("#humidityTxt");
+    const windSpeedTxt = document.querySelector("#windSpeedTxt");
+    document.addEventListener("DOMContentLoaded", function() {
+    weatherIcon.src = "default.jpg"; // Replace with your actual default weather icon path
+});
+    searchBtn.addEventListener("click", () => {
+        const city = cityInput.value.trim();
+        if (city) {
+            fetchWeather(city);
+        }
+    });
+
+    async function fetchWeather(city) {
+    try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
+        const data = await response.json();
+
+        if (data.cod === 200) {
+            cityTxt.textContent = `${data.name}, ${data.sys.country}`;
+            dateTxt.textContent = new Date().toDateString();
+            tempTxt.textContent = `${data.main.temp}°C`;
+            conditionTxt.textContent = data.weather[0].main;
+            humidityTxt.textContent= ` ${data.main.humidity}%`;
+            windSpeedTxt.textContent = `${data.wind.speed} km/h`;
+
+
+
+            // Update weather icon based on condition
+            if (data.weather[0].main.toLowerCase() === "clear") {
+                weatherIcon.src = "clear.svg"; // Path to your clear weather image
+            } else if (data.weather[0].main.toLowerCase() === "clouds") {
+                weatherIcon.src = "cloud.svg"; // Path to cloudy image
+            } else if (data.weather[0].main.toLowerCase() === "rain") {
+                weatherIcon.src = "rain.svg"; // Path to rain image
+            } else if (data.weather[0].main.toLowerCase() === "snow") {
+                weatherIcon.src = "snow.svg"; // Path to snow image
+            } else if (data.weather[0].main.toLowerCase() === "thunderstorm") {
+                weatherIcon.src = "storm.svg"; // Path to thunderstorm image
+            } else if (data.weather[0].main.toLowerCase() === "haze") {
+                weatherIcon.src = "haze.svg"; 
+            }
+                else {
+                weatherIcon.src = "default.jpeg"; // Default icon for other conditions
+            }
+
+        } else {
+            alert("City not found!");
+        }
+    } catch (error) {
+        alert("Failed to fetch weather data.");
+    }
+}
+function getWeather() {
+    const city = document.getElementById("cityInput").value;
+    if (city) {
+        fetchWeather(city);
+    } else {
+        alert("Please enter a city name.");
+    }
+}
+
+
+
+</script>
+</body>
+</html>
+

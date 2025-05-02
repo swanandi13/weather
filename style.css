@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('weather.jpg');
+    background-size: cover;
+    
+}
+
+.weather-showcase {
+    position: absolute;
+    top: 50%;
+    right: 30%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 89px;
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    box-shadow: 0 12px 24px rgba(5, 5, 5, 0.6);
+    height: 89vh;
+    width: 30%;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: flex-start; /* Aligns elements to the top */
+    border-image-width: auto;
+    
+}
+
+
+.weather-showcase input,
+.weather-showcase button {
+    width: 90%;
+    height: 30px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    
+}
+.weather-showcase input {
+    padding: 10px;
+}
+
+
+.weather-showcase button {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    width:40px;
+    top:7%;
+    right:60px;
+    transform: translateY(-50%);
+    position: absolute;
+}
+.weather-info{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content:space-between;
+    margin-top: 5%;
+    font-size: 1.6rem;
+    color: white;
+    padding-top: 4px;
+    padding-bottom: 36px;
+
+}
+.location-date{
+    display: flex;
+    align-items: flex-start;
+    margin-right:7px;
+    padding-left: 10px;
+    font-size: 1.4rem;
+}
+.country-txt{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-right: 40px; /* Adds spacing between the icon and text */
+    align-items: center;
+    margin-top:10px;
+}
+.date{
+   margin-right:10px;
+   align-items: center;
+   margin-top:10px;
+}
+.weather-icon {
+    margin-top: 50px;
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 10px auto;
+}.weather-details {
+    display: flex;
+    flex-direction:column;
+  padding:0 10px 10px;
+  margin-top:-60px;
+  font-size: 1.6rem;
+     /* Adds space between the two elements */
+}
+
+
+
